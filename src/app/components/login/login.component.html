@@ -1,0 +1,34 @@
+<div class="container login justify-content-center">
+  <a href="javascript:void(0)" [routerLink]="['']" class="nav-link"></a>
+
+  <form (ngSubmit)="submit()" [formGroup]="requiredForm">
+
+    <div class="form-group pb-4">
+      <label for="username" class="mb-1">Username</label>
+      <input type="text" formControlName="username" id="username" name="username" class="form-control" placeholder="Enter email" required>
+      <small *ngIf="requiredForm.controls['username'].invalid && requiredForm.controls['username'].touched" class="text-danger">
+        <small *ngIf="requiredForm.controls['username'].errors">
+          Username is required.
+        </small>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="mb-1">Password</label>
+      <input type="password" formControlName="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+      <small *ngIf="requiredForm.controls['password'].invalid && requiredForm.controls['password'].touched" class="text-danger">
+        <small *ngIf="requiredForm.controls['password'].errors">
+          Password is required.
+        </small>
+      </small>
+    </div>
+
+    <div class="message" #mm></div>
+
+    <div class="allBtn justify-content-center mt-3">
+      <button type="submit" class="btn btn-secondary" routerLink="/flights" (click)="message()">Login</button>
+      <button type="submit" class="btn btn-dark" routerLink="/form">Register</button>
+    </div>
+
+  </form>
+</div>

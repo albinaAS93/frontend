@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row border-secondary justify-content-center flights">
+    <div class="col-12 col-sm-6 col-lg-5">
+      <div class="card mb-4 rounded-3 shadow-sm border-secondary">
+        <div class="card-header py-2 bg-light text-dark">
+          <h4 class="my-0 fw-normal text-center">Add Flight</h4>
+        </div>
+        <div class="card-body py-3">
+          <form (ngSubmit)="add()" [formGroup]="requiredForm">
+            <div class="form-group p-3">
+              <label for="departure">Departure City</label>
+              <select class="form-control" formControlName="departure" name="departure" id="departure">
+                <option value={{city.id}} *ngFor="let city of cities">{{city.name}}
+              </select>
+              <div *ngIf="requiredForm.controls['departure'].invalid && requiredForm.controls['departure'].touched" class="text-danger">
+                <div *ngIf="requiredForm.controls['departure'].errors">
+                  Departure city is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group p-3">
+              <label for="arrival">Arrival City</label>
+              <select class="form-control" formControlName="arrival" name="arrival" id="arrival">
+                <option value={{city.id}} *ngFor="let city of cities">{{city.name}}
+              </select>
+              <div *ngIf="requiredForm.controls['arrival'].invalid && requiredForm.controls['arrival'].touched" class="text-danger">
+                <div *ngIf="requiredForm.controls['arrival'].errors">
+                  Arrival city is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group p-3">
+              <label for="availableSeats">Available Seats</label>
+              <input type="number" formControlName="availableSeats" name="availableSeats" class="form-control" placeholder="Enter seats">
+              <div *ngIf="requiredForm.controls['availableSeats'].invalid && requiredForm.controls['availableSeats'].touched" class="text-danger">
+                <div *ngIf="requiredForm.controls['availableSeats'].errors">
+                  Number of availables seats is required.
+                </div>
+              </div>
+            </div>
+            <div class="container d-flex justify-content-center my-4">
+              <button type="submit" (click)="message()" class="w-50 btn btn-lg btn-secondary m-2">
+                Add
+              </button>
+              <button type="submit" class="w-50 btn btn-lg btn-dark m-2" routerLink="/flights">
+                Back
+              </button>
+            </div>
+            <div class="message" #mm (click)="FF()"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-5">
+      <div class="card mb-4 rounded-3 shadow-sm border-secondary">
+        <div class="card-header py-2 bg-light">
+          <h4 class="my-0 fw-normal text-center">Update Flight</h4>
+        </div>
+        <div class="card-body py-4">
+          <form (ngSubmit)="update()" [formGroup]="requiredForm2">
+            <div class="p-2"></div>
+            <div class="form-group p-3">
+              <label for="id">Update Flight</label>
+              <select class="form-control" formControlName="id" name="id" id="id">
+                <option value={{flight.id}} *ngFor="let flight of flights">{{flight.departure}} - {{flight.arrival}}
+              </select>
+            </div>
+            <div class="form-group p-3">
+              <label for="availableSeats">Available Seats</label>
+              <input type="number" formControlName="availableSeats" name="availableSeats" class="form-control" placeholder="Enter seats">
+            </div>
+            <div class="container d-flex justify-content-center mt-5 pt-5">
+              <button type="submit" (click)="messageUp()" class="w-50 btn btn-lg btn-secondary m-1">
+                Update
+              </button>
+              <button type="submit" class="w-50 btn btn-lg btn-dark m-1" routerLink="/flights">
+                Back
+              </button>
+            </div>
+            <div class="messageUP" #mm2 (click)="FF2()"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
